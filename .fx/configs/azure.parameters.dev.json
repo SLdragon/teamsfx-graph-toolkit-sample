@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "resourceBaseName": {
-        "value": "teamsfxgraphtoolkit113"
+        "value": "teamsfxgraphtoolkitdemo"
       },
       "m365ClientId": {
         "value": "{{state.fx-resource-aad-app-for-teams.clientId}}"

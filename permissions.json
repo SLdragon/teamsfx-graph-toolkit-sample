@@ -3,13 +3,7 @@
         "resource": "Microsoft Graph",
         "delegated": [
             "User.Read",
-            "User.ReadBasic.All",
-            "People.Read",
-            "Tasks.Read",
-            "Tasks.ReadWrite",
-            "Calendars.Read",
-            "Calendars.ReadWrite",
-            "Group.ReadWrite.All"
+            "User.ReadBasic.All"
         ],
         "application": []
     }
