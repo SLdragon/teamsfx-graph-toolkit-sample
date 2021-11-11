@@ -19,7 +19,7 @@ class Tab extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showLoginPage: true,
+      providerState: undefined,
       selectedPerson: undefined
     }
   }
@@ -42,9 +42,8 @@ class Tab extends React.Component {
 
     Providers.onProviderUpdated((stateEvent) => {
       if(stateEvent == ProvidersChangedState.ProviderStateChanged) {
-        const provider = Providers.globalProvider;
         this.setState({
-          showLoginPage: provider && provider.state === ProviderState.SignedOut
+          providerState: Providers.globalProvider.state
         });
       }      
     });
@@ -59,7 +58,7 @@ class Tab extends React.Component {
     
     return (
       <div>
-        {this.state.showLoginPage === false && <div className="flex-container">
+        {this.state.providerState === ProviderState.SignedIn && <div className="flex-container">
           <div className="features-col">
             <div className="features">
 
@@ -109,7 +108,7 @@ class Tab extends React.Component {
           </div>
         </div>}
 
-        {this.state.showLoginPage === true && <div className="auth">
+        {this.state.providerState === ProviderState.SignedOut === true && <div className="auth">
           <h2>Welcome to TeamsFx Integration with Graph Toolkit App!</h2>
         </div>}
       </div>
