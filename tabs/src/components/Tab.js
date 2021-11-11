@@ -19,7 +19,7 @@ class Tab extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showLoginPage: undefined,
+      showLoginPage: true,
       selectedPerson: undefined
     }
   }
@@ -40,10 +40,13 @@ class Tab extends React.Component {
       ]
     });
 
-    Providers.onProviderUpdated(() => {
-      this.setState({
-        showLoginPage: Providers.globalProvider && Providers.globalProvider.state === ProviderState.SignedIn
-      });
+    Providers.onProviderUpdated((stateEvent) => {
+      if(stateEvent == ProvidersChangedState.ProviderStateChanged) {
+        const provider = Providers.globalProvider;
+        this.setState({
+          showLoginPage: provider && provider.state === ProviderState.SignedOut
+        });
+      }      
     });
   }
 
@@ -56,7 +59,7 @@ class Tab extends React.Component {
     
     return (
       <div>
-        {this.state.showLoginPage && <div className="flex-container">
+        {this.state.showLoginPage === false && <div className="flex-container">
           <div className="features-col">
             <div className="features">
 
