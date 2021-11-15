@@ -70,10 +70,10 @@
      this.scopes = config.scopes;
  
      loadConfiguration({
-       authentication: {
-         initiateLoginEndpoint: config.initiateLoginEndpoint,
-         simpleAuthEndpoint: config.simpleAuthEndpoint,
-         clientId: config.clientId,
+        authentication: {
+          clientId: config.clientId ?? process.env.REACT_APP_CLIENT_ID,
+          initiateLoginEndpoint: config.initiateLoginEndpoint ?? process.env.REACT_APP_START_LOGIN_PAGE_URL,
+          simpleAuthEndpoint: config.simpleAuthEndpoint ?? process.env.REACT_APP_TEAMSFX_ENDPOINT,
        },
      });
  

@@ -10,8 +10,8 @@ import {
 } from "@microsoft/teamsfx";
 import { Button } from "@fluentui/react-northstar"
 
-import { Providers, ProvidersChangedState, ProviderState, SimpleProvider } from '@microsoft/mgt-element';
-import { PeoplePicker, PersonCard, Person, PersonViewType, FileList } from '@microsoft/mgt-react';
+import { Providers, ProvidersChangedState, ProviderState } from '@microsoft/mgt-element';
+import { PeoplePicker, PersonCard, Person, PersonViewType } from '@microsoft/mgt-react';
 import { TeamsFxProvider } from './TeamsFxProvider';
 
 class Tab extends React.Component {
@@ -30,13 +30,9 @@ class Tab extends React.Component {
 
   async initGraphToolkit() {
     Providers.globalProvider = new TeamsFxProvider({
-      clientId: process.env.REACT_APP_CLIENT_ID,
-      initiateLoginEndpoint: process.env.REACT_APP_START_LOGIN_PAGE_URL,
-      simpleAuthEndpoint: process.env.REACT_APP_TEAMSFX_ENDPOINT,
       scopes: [
         "User.Read",
-        "User.ReadBasic.All",
-        "Files.Read"
+        "User.ReadBasic.All"
       ]
     });
 
@@ -72,18 +68,6 @@ class Tab extends React.Component {
               <div className="my-account-area">
                 <Person personQuery="me" view={PersonViewType.threelines}></Person>
               </div>
-
-              <div>
-                <div className="header">
-                  <div className="title">
-                    <h2>My Files</h2>
-                  </div>
-                </div>
-              </div>
-              <div className="my-account-area">
-                <FileList></FileList>
-              </div>
-
               <div>
                 <div className="header">
                   <div className="title">
